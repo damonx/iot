@@ -28,7 +28,7 @@ import com.fpa.usercenter.dto.UplusDeviceRequestDto;
 import com.fpa.usercenter.dto.UplusDeviceResponseDto;
 import com.fpa.usercenter.service.UplusCloudService;
 import com.fpa.usercenter.util.DesUtils;
-import com.fpa.usercenter.util.HttpClientBuilder;
+import com.fpa.usercenter.util.HttpClientFactory;
 import com.fpa.usercenter.util.SignUtils;
 
 @PropertySources(value = { @PropertySource("classpath:upluscloud.properties") })
@@ -111,9 +111,9 @@ public class UplusCloudServiceImpl implements UplusCloudService {
 
 		// String uwsSign = SignUtils.sha256Uws(appId, appKey, clientId, "", timestamp, signUrl);
 
-		final CloseableHttpClient httpClient = new HttpClientBuilder()
+		final CloseableHttpClient httpClient = new HttpClientFactory()
 				.withConnectTimeout(Integer.valueOf(this.environment.getProperty("haier.cloud.connect.timeout")))
-				.withSocketTimeout(Integer.valueOf(this.environment.getProperty("haier.cloud.connect.timeout"))).build();
+				.withSocketTimeout(Integer.valueOf(this.environment.getProperty("haier.cloud.connect.timeout"))).init();
 		final HttpGet getMethod = new HttpGet(url);
 
 		try {

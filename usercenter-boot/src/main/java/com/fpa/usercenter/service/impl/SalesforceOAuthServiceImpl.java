@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fpa.usercenter.dto.sforce.OauthTokenResponseDto;
 import com.fpa.usercenter.dto.sforce.QueryDataResponseDto;
 import com.fpa.usercenter.service.SalesforceOAuthService;
-import com.fpa.usercenter.util.HttpClientBuilder;
+import com.fpa.usercenter.util.HttpClientFactory;
 
 @PropertySources(value = { @PropertySource("classpath:upluscloud.properties") })
 @Service
@@ -42,7 +42,7 @@ public class SalesforceOAuthServiceImpl implements SalesforceOAuthService {
 	@Override
 	public OauthTokenResponseDto getOAuthAccessToken(final String code) {
 		Objects.requireNonNull(code, "Code cannont be null!");
-		final CloseableHttpClient httpClient = new HttpClientBuilder().build();
+		final CloseableHttpClient httpClient = new HttpClientFactory().init();
 		final String salesForceOauthUrl = this.environment.getProperty("fpa.salesforce.oauth");
 
 		final HttpPost httpPost = new HttpPost(salesForceOauthUrl);
@@ -100,7 +100,7 @@ public class SalesforceOAuthServiceImpl implements SalesforceOAuthService {
 	@Override
 	public QueryDataResponseDto getUserData(final String accessToken, final String sfIdentityUrl) {
 
-		final CloseableHttpClient httpClient = new HttpClientBuilder().build();
+		final CloseableHttpClient httpClient = new HttpClientFactory().init();
 		final StringBuilder content = new StringBuilder();
 		content.append(sfIdentityUrl).append("?");
 		content.append("oauth_token=").append(accessToken);

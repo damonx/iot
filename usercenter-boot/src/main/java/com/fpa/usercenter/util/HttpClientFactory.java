@@ -37,9 +37,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 
-public class HttpClientBuilder {
-
-	private CloseableHttpClient httpClient;
+public class HttpClientFactory {
 
 	private final int connectionRequestTimeout = 5000;
 	private int socketTimeout = 30000;
@@ -51,25 +49,14 @@ public class HttpClientBuilder {
 	private final int detailPort = 80;
 	private final int detailMaxPerRoute = 100;
 
-	public HttpClientBuilder withConnectTimeout(final int connTimeout) {
+	public HttpClientFactory withConnectTimeout(final int connTimeout) {
 		this.connectTimeout = connTimeout;
 		return this;
 	}
 
-	public HttpClientBuilder withSocketTimeout(final int socTimeOut) {
+	public HttpClientFactory withSocketTimeout(final int socTimeOut) {
 		this.socketTimeout = socTimeOut;
 		return this;
-	}
-
-	public CloseableHttpClient build() {
-		if (null == this.httpClient) {
-			synchronized (HttpClientBuilder.class) {
-				if (null == this.httpClient) {
-					this.httpClient = init();
-				}
-			}
-		}
-		return this.httpClient;
 	}
 
 	public CloseableHttpClient init() {
