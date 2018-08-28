@@ -10,7 +10,7 @@ services:
     networks:
       - front-tier
       - back-tier
-    scale: 5
+    scale: 3
   lb:
     image: dockercloud/haproxy
     ports:
