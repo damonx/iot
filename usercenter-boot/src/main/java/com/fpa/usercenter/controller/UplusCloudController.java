@@ -1,4 +1,4 @@
-package com.fpa.usercenter;
+package com.fpa.usercenter.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

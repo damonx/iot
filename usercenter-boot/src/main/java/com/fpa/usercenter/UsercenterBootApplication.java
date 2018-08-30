@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = UplusCloudController.class)
+@ComponentScan("com.fpa.usercenter")
 public class UsercenterBootApplication extends SpringBootServletInitializer {
 
 	@Override
