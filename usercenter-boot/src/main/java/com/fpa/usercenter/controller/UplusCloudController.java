@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,9 @@ import com.fpa.usercenter.util.DesUtils;
 public class UplusCloudController {
 
 	Logger logger = LoggerFactory.getLogger(UplusCloudController.class);
+
+	@Value("${spring.application.name}")
+	String appVersion;
 
 	@Autowired
 	private UplusCloudService uplusCloudService;
@@ -111,8 +115,10 @@ public class UplusCloudController {
 	}
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-	public String login() {
-		return "login";
+	public ModelAndView login(final ModelAndView model) {
+		model.addObject("appVersion", this.appVersion);
+		model.setViewName("login");
+		return model;
 	}
 
 	@RequestMapping(value = { "/querydevicelist" }, method = RequestMethod.GET)
