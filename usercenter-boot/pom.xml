@@ -94,11 +94,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
-		</dependency>
 				<!-- Need this to compile JSP, 
 			tomcat-embed-jasper version is not working, no idea why -->
 		<dependency>

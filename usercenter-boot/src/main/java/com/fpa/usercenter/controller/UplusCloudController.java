@@ -25,7 +25,7 @@ import com.fpa.usercenter.service.UplusCloudService;
 import com.fpa.usercenter.util.DesUtils;
 
 @Controller
-@RequestMapping("callback")
+@RequestMapping("/usercenter/callback")
 public class UplusCloudController {
 
 	Logger logger = LoggerFactory.getLogger(UplusCloudController.class);
